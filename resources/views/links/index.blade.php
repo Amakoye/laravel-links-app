@@ -26,6 +26,7 @@
                                                     {{Form::hidden('_method','DELETE')}}
                                                     {{Form::submit('Delete',['class'=>'btn btn-danger btn-sm '])}}
                                                 {!!Form::close()!!}
+                                        <a href="/links/{{$link->id}}" class="btn btn-info btn-sm ml-2">View</a>
                                         </div>
                                     </td>
                                 </tr>

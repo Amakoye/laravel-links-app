@@ -64,6 +64,8 @@ class LinksController extends Controller
     public function show($id)
     {
         //
+        $link = Link::find($id);
+        return view('links.show')->with('link', $link);
     }
 
     /**
@@ -75,6 +77,9 @@ class LinksController extends Controller
     public function edit($id)
     {
         //
+        $link = Link::find($id);
+
+        return view('links.edit')->with('link', $link);
     }
 
     /**
@@ -87,6 +92,20 @@ class LinksController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'title'=>'required',
+            'url'=>'required',
+            'description'=>'required',
+        ]);
+        //update date
+        $link = Link::find($id);
+        $link->title = $request->input('title');
+        $link->url = $request->input('url');
+        $link->description = $request->input('description');
+        $link->save();
+
+        return redirect('/links')->with('success', 'Link updated successfully');
+        
     }
 
     /**
@@ -98,6 +117,8 @@ class LinksController extends Controller
     public function destroy($id)
     {
         //
-        dd($id);
+        $link = Link::find($id);
+        $link->delete();
+         return redirect('/links')->with('success', 'Link deleted');
     }
 }
