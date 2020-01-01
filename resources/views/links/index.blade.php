@@ -32,9 +32,9 @@
                                 </tr>
                                 @endforeach
                             </table>
-                           
+                            {{$links->links()}}
                        @else
-                           
+                           No links found
                        @endif
                     </div>
                 </div>
